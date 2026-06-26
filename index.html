@@ -47,6 +47,14 @@
           {
             "@type": "HighSchool",
             "name": "SMK Negeri 4 Kendari"
+          },
+          {
+            "@type": "MiddleSchool",
+            "name": "SMP Negeri 5 Kendari"
+          },
+          {
+            "@type": "ElementarySchool",
+            "name": "SDN 1 Poasia"
           }
         ],
         "memberOf": {
@@ -263,7 +271,7 @@
 
   <!-- ── EDUCATION ── -->
   <section id="education" class="section">
-    <p class="eyebrow">schema:CollegeOrUniversity · schema:HighSchool · alumniOf</p>
+    <p class="eyebrow">schema:CollegeOrUniversity · schema:HighSchool · schema:MiddleSchool · schema:ElementarySchool · alumniOf</p>
     <h2>Riwayat Pendidikan</h2>
     <div class="card-grid">
       <div class="card card--edu">
@@ -278,7 +286,17 @@
       <div class="card card--edu">
         <h3>SMK Negeri 4 Kendari</h3>
         <p class="muted">Teknik Komputer dan Jaringan · Kendari · Lulus 2023</p>
-        <p class="muted" style="margin-top:.35rem;font-family:var(--font-mono);font-size:.75rem;color:var(--edu)">graduatedFrom · schema:HighSchool</p>
+        <p class="muted" style="margin-top:.35rem;font-family:var(--font-mono);font-size:.75rem;color:var(--edu)">alumniOf · schema:HighSchool</p>
+      </div>
+      <div class="card card--edu">
+        <h3>SMP Negeri 5 Kendari</h3>
+        <p class="muted">Kendari · Lulus 2020</p>
+        <p class="muted" style="margin-top:.35rem;font-family:var(--font-mono);font-size:.75rem;color:var(--edu)">alumniOf · schema:MiddleSchool</p>
+      </div>
+      <div class="card card--edu">
+        <h3>SDN 1 Poasia</h3>
+        <p class="muted">Kendari · Lulus 2017</p>
+        <p class="muted" style="margin-top:.35rem;font-family:var(--font-mono);font-size:.75rem;color:var(--edu)">alumniOf · schema:ElementarySchool</p>
       </div>
     </div>
 
@@ -296,6 +314,14 @@
     {
       "@type": "HighSchool",
       "name": "SMK Negeri 4 Kendari"
+    },
+    {
+      "@type": "MiddleSchool",
+      "name": "SMP Negeri 5 Kendari"
+    },
+    {
+      "@type": "ElementarySchool",
+      "name": "SDN 1 Poasia"
     }
   ]
 }</pre>
