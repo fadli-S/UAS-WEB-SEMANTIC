@@ -4,7 +4,7 @@
     <!ENTITY rdf  "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
     <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
     <!ENTITY xsd  "http://www.w3.org/2001/XMLSchema#" >
-    <!ENTITY ex   "https://zizi.github.io/ontologi#" >
+    <!ENTITY ex   "https://fadli-S.github.io/ontologi#" >
 ]>
 
 <!--
@@ -21,14 +21,14 @@
     xmlns:rdf  ="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
     xmlns:rdfs ="http://www.w3.org/2000/01/rdf-schema#"
     xmlns:xsd  ="http://www.w3.org/2001/XMLSchema#"
-    xmlns:ex   ="https://zizi.github.io/ontologi#"
+    xmlns:ex   ="https://fadli-S.github.io/ontologi#"
     xmlns:schema="https://schema.org/"
-    xml:base   ="https://zizi.github.io/ontologi">
+    xml:base   ="https://fadli-S.github.io/profil">
 
     <!-- ═══════════════════════════════
          DEKLARASI ONTOLOGI
     ════════════════════════════════ -->
-    <owl:Ontology rdf:about="https://zizi.github.io/ontologi">
+    <owl:Ontology rdf:about="https://fadli-S.github.io/ontologi">
         <rdfs:label xml:lang="id">Ontologi Profil Mahasiswa</rdfs:label>
         <rdfs:comment xml:lang="id">
             Ontologi untuk merepresentasikan profil mahasiswa Ilmu Komputer
@@ -36,7 +36,7 @@
             Organisasi, Skill, dan Proyek beserta relasi antar-kelas.
         </rdfs:comment>
         <owl:versionInfo>1.0</owl:versionInfo>
-        <owl:versionIRI rdf:resource="https://zizi.github.io/ontologi/v1.0"/>
+        <owl:versionIRI rdf:resource="https://fadli-S.github.io/ontologi/v1.0"/>
     </owl:Ontology>
 
 
@@ -320,12 +320,12 @@
          Di Protégé: tab "Individuals by class" untuk edit ini
     ════════════════════════════════════════════════════════ -->
 
-    <!-- Individu: Zizi (Mahasiswa) -->
-    <owl:NamedIndividual rdf:about="&ex;Zizi">
+    <!-- Individu: Fadli S (Mahasiswa) -->
+    <owl:NamedIndividual rdf:about="&ex;FadliS">
         <rdf:type rdf:resource="&ex;Mahasiswa"/>
-        <rdfs:label xml:lang="id">Zizi</rdfs:label>
+        <rdfs:label xml:lang="id">Fadli S  </rdfs:label>
         <ex:belajarDi      rdf:resource="&ex;UniversitasHaluOleo"/>
-        <ex:belajarDi      rdf:resource="&ex;SMA_Kamu"/>
+        <ex:belajarDi      rdf:resource="&ex;SMK_Kamu"/>
         <ex:belajarDi      rdf:resource="&ex;SMP_Kamu"/>
         <ex:belajarDi      rdf:resource="&ex;SD_Kamu"/>
         <ex:menguasaiSkill rdf:resource="&ex;SkillPython"/>
@@ -346,28 +346,28 @@
         <rdfs:label xml:lang="id">Universitas Halu Oleo</rdfs:label>
         <ex:programStudi>S1 Ilmu Komputer</ex:programStudi>
         <ex:fakultas>Fakultas MIPA</ex:fakultas>
-        <ex:tahunMasuk rdf:datatype="&xsd;gYear">2021</ex:tahunMasuk>
+        <ex:tahunMasuk rdf:datatype="&xsd;gYear">2023</ex:tahunMasuk>
     </owl:NamedIndividual>
 
-    <owl:NamedIndividual rdf:about="&ex;SMA_Kamu">
-        <rdf:type rdf:resource="&ex;SekolahMenengahAtas"/>
-        <rdfs:label xml:lang="id">SMA Negeri [isi nama SMA-mu]</rdfs:label>
-        <ex:tahunMasuk  rdf:datatype="&xsd;gYear">2018</ex:tahunMasuk>
-        <ex:tahunLulus  rdf:datatype="&xsd;gYear">2021</ex:tahunLulus>
+    <owl:NamedIndividual rdf:about="&ex;SMK_Kamu">
+        <rdf:type rdf:resource="&ex;SekolahMenengahKejuruan"/>
+        <rdfs:label xml:lang="id">SMK Negeri 4 Kendari</rdfs:label>
+        <ex:tahunMasuk  rdf:datatype="&xsd;gYear">2020</ex:tahunMasuk>
+        <ex:tahunLulus  rdf:datatype="&xsd;gYear">2023</ex:tahunLulus>
     </owl:NamedIndividual>
 
     <owl:NamedIndividual rdf:about="&ex;SMP_Kamu">
         <rdf:type rdf:resource="&ex;SekolahMenengahPertama"/>
-        <rdfs:label xml:lang="id">SMP Negeri [isi nama SMP-mu]</rdfs:label>
-        <ex:tahunMasuk  rdf:datatype="&xsd;gYear">2015</ex:tahunMasuk>
-        <ex:tahunLulus  rdf:datatype="&xsd;gYear">2018</ex:tahunLulus>
+        <rdfs:label xml:lang="id">SMP Negeri 5 Kendari</rdfs:label>
+        <ex:tahunMasuk  rdf:datatype="&xsd;gYear">2017</ex:tahunMasuk>
+        <ex:tahunLulus  rdf:datatype="&xsd;gYear">2020</ex:tahunLulus>
     </owl:NamedIndividual>
 
     <owl:NamedIndividual rdf:about="&ex;SD_Kamu">
         <rdf:type rdf:resource="&ex;SekolahDasar"/>
-        <rdfs:label xml:lang="id">SDN [isi nama SD-mu]</rdfs:label>
-        <ex:tahunMasuk  rdf:datatype="&xsd;gYear">2009</ex:tahunMasuk>
-        <ex:tahunLulus  rdf:datatype="&xsd;gYear">2015</ex:tahunLulus>
+        <rdfs:label xml:lang="id">SDN 1 Poasia</rdfs:label>
+        <ex:tahunMasuk  rdf:datatype="&xsd;gYear">2011</ex:tahunMasuk>
+        <ex:tahunLulus  rdf:datatype="&xsd;gYear">2017</ex:tahunLulus>
     </owl:NamedIndividual>
 
     <!-- Individu: Organisasi -->
@@ -375,15 +375,15 @@
         <rdf:type rdf:resource="&ex;OrganisasiMahasiswa"/>
         <rdfs:label xml:lang="id">Himpunan Mahasiswa Ilmu Komputer UHO (HMPSILMUKOMPUTER)</rdfs:label>
         <ex:peran>Anggota Aktif</ex:peran>
-        <ex:tahunMulai rdf:datatype="&xsd;gYear">2021</ex:tahunMulai>
+        <ex:tahunMulai rdf:datatype="&xsd;gYear">2025</ex:tahunMulai>
     </owl:NamedIndividual>
 
     <owl:NamedIndividual rdf:about="&ex;BTN_Kendari">
         <rdf:type rdf:resource="&ex;TempatMagang"/>
         <rdfs:label xml:lang="id">PT Bank Tabungan Negara KC Kendari</rdfs:label>
         <ex:peran>Praktikan IT (KKP)</ex:peran>
-        <ex:tahunMulai  rdf:datatype="&xsd;gYear">2024</ex:tahunMulai>
-        <ex:tahunSelesai rdf:datatype="&xsd;gYear">2024</ex:tahunSelesai>
+        <ex:tahunMulai  rdf:datatype="&xsd;gYear">2026</ex:tahunMulai>
+        <ex:tahunSelesai rdf:datatype="&xsd;gYear">2026</ex:tahunSelesai>
     </owl:NamedIndividual>
 
     <!-- Individu: Skill -->

@@ -1,240 +1,93 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!--
-  ╔══════════════════════════════════════════════════════╗
-  ║  profil.rdf — Data RDF Profil Mahasiswa              ║
-  ║  File ini MENGGUNAKAN kelas dari ontologi.owl        ║
-  ║  Ganti semua [PLACEHOLDER] dengan data asli kamu!    ║
-  ╚══════════════════════════════════════════════════════╝
--->
+<?xml version="1.0"?>
 <rdf:RDF
-  xmlns:rdf    ="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-  xmlns:rdfs   ="http://www.w3.org/2000/01/rdf-schema#"
-  xmlns:owl    ="http://www.w3.org/2002/07/owl#"
-  xmlns:xsd    ="http://www.w3.org/2001/XMLSchema#"
-  xmlns:schema ="https://schema.org/"
-  xmlns:foaf   ="http://xmlns.com/foaf/0.1/"
-  xmlns:ex     ="https://zizi.github.io/ontologi#"
-  xml:base     ="https://zizi.github.io/profil">
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+    xmlns:owl="http://www.w3.org/2002/07/owl#"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+    xmlns:foaf="http://xmlns.com/foaf/0.1/"
+    xmlns:schema="https://schema.org/"
+    xmlns:ex="https://fadli-S.github.io/ontologi#"
+    xml:base="https://fadli-S.github.io/profil">
 
-  <!-- Referensi ke ontologi yang dipakai -->
-  <owl:Ontology rdf:about="https://zizi.github.io/profil">
-    <owl:imports rdf:resource="https://zizi.github.io/ontologi"/>
-    <rdfs:label>Data Profil Zizi</rdfs:label>
-    <rdfs:comment>Instance data profil mahasiswa yang menggunakan kelas dari ontologi profil mahasiswa UHO.</rdfs:comment>
-  </owl:Ontology>
+    <!-- Ontology -->
+    <owl:Ontology rdf:about="https://fadli-S.github.io/profil">
+        <rdfs:label>Data Profil Fadli</rdfs:label>
+        <owl:imports rdf:resource="https://fadli-S.github.io/ontologi"/>
+    </owl:Ontology>
 
-  <!-- ══════════════════════════════════════════════════
-       INDIVIDU: MAHASISWA (diri kamu)
-       Ganti URI dan nilai sesuai data asli!
-  ═══════════════════════════════════════════════════ -->
-  <rdf:Description rdf:about="https://zizi.github.io/#zizi">
+    <!-- Person -->
+    <rdf:Description rdf:about="https://fadli-S.github.io/#fadli">
+        <rdf:type rdf:resource="https://schema.org/Person"/>
+        <schema:name>Muhammad Fadli S</schema:name>
+        <foaf:name>Muhammad Fadli S</foaf:name>
 
-    <!-- Tipe kelas (dari ontologi + schema.org + FOAF) -->
-    <rdf:type rdf:resource="https://zizi.github.io/ontologi#Mahasiswa"/>
-    <rdf:type rdf:resource="https://schema.org/Person"/>
-    <rdf:type rdf:resource="http://xmlns.com/foaf/0.1/Person"/>
+        <schema:email>fadlinan347@gmail.com</schema:email>
 
-    <!-- ── Identitas dasar ── -->
-    <schema:name>Zizi</schema:name>                          <!-- GANTI nama lengkap -->
-    <foaf:name>Zizi</foaf:name>
-    <schema:email>zizi@student.uho.ac.id</schema:email>     <!-- GANTI email -->
-    <schema:description>Mahasiswa S1 Ilmu Komputer Universitas Halu Oleo yang berfokus pada Machine Learning, Semantic Web, dan pengembangan sistem berbasis web untuk konteks lokal Indonesia.</schema:description>
+        <schema:alternateName>Fadli</schema:alternateName>
 
-    <!-- ── Alamat ── -->
-    <schema:address rdf:nodeID="alamatZizi"/>
+        <schema:description>
+            Mahasiswa Ilmu Komputer FMIPA Universitas Halu Oleo
+            yang memiliki minat pada Web Development,
+            Semantic Web, dan Backend Development.
+        </schema:description>
 
-    <!-- ── Linked Data (sameAs) ── -->
-    <schema:sameAs rdf:resource="https://github.com/zizi-username"/>        <!-- GANTI username GitHub -->
-    <schema:sameAs rdf:resource="https://linkedin.com/in/zizi-username"/>  <!-- GANTI username LinkedIn -->
+        <schema:jobTitle>Mahasiswa</schema:jobTitle>
 
-    <!-- ── Pendidikan: belajarDi (ex:) + alumniOf (schema:) ── -->
-    <ex:belajarDi    rdf:resource="https://zizi.github.io/#uho"/>
-    <ex:belajarDi    rdf:resource="https://zizi.github.io/#sma"/>
-    <ex:belajarDi    rdf:resource="https://zizi.github.io/#smp"/>
-    <ex:belajarDi    rdf:resource="https://zizi.github.io/#sd"/>
-    <schema:alumniOf rdf:resource="https://zizi.github.io/#uho"/>
+        <schema:affiliation rdf:resource="https://fadli-S.github.io/#uho"/>
 
-    <!-- ── Skill: menguasaiSkill (ex:) + knowsAbout (schema:) ── -->
-    <ex:menguasaiSkill   rdf:resource="https://zizi.github.io/#skill-python"/>
-    <ex:menguasaiSkill   rdf:resource="https://zizi.github.io/#skill-ml"/>
-    <ex:menguasaiSkill   rdf:resource="https://zizi.github.io/#skill-sparql"/>
-    <ex:menguasaiSkill   rdf:resource="https://zizi.github.io/#skill-php"/>
-    <ex:menguasaiSkill   rdf:resource="https://zizi.github.io/#skill-mysql"/>
-    <ex:menguasaiSkill   rdf:resource="https://zizi.github.io/#skill-semanticweb"/>
-    <schema:knowsAbout   rdf:resource="https://zizi.github.io/#skill-python"/>
-    <schema:knowsAbout   rdf:resource="https://zizi.github.io/#skill-ml"/>
-    <schema:knowsAbout   rdf:resource="https://zizi.github.io/#skill-sparql"/>
+        <schema:memberOf rdf:resource="https://fadli-S.github.io/#hmps"/>
 
-    <!-- ── Organisasi: bergabungDengan (ex:) + memberOf (schema:) ── -->
-    <ex:bergabungDengan  rdf:resource="https://zizi.github.io/#himatif"/>
-    <ex:bergabungDengan  rdf:resource="https://zizi.github.io/#btn-kendari"/>
-    <schema:memberOf     rdf:resource="https://zizi.github.io/#himatif"/>
+        <schema:alumniOf rdf:resource="https://fadli-S.github.io/#smkn4"/>
 
-    <!-- ── Proyek: mengerjakanProyek (ex:) + subjectOf (schema:) ── -->
-    <ex:mengerjakanProyek rdf:resource="https://zizi.github.io/#proyek-sentimen"/>
-    <ex:mengerjakanProyek rdf:resource="https://zizi.github.io/#proyek-oleholeh"/>
-    <schema:subjectOf     rdf:resource="https://zizi.github.io/#proyek-sentimen"/>
-    <schema:subjectOf     rdf:resource="https://zizi.github.io/#proyek-oleholeh"/>
+        <schema:knowsAbout>HTML</schema:knowsAbout>
+        <schema:knowsAbout>CSS</schema:knowsAbout>
+        <schema:knowsAbout>PHP</schema:knowsAbout>
+        <schema:knowsAbout>Semantic Web</schema:knowsAbout>
 
-  </rdf:Description>
+        <schema:url rdf:resource="https://fadli-S.github.io/UAS-WEB-SEMANTIC/"/>
 
-  <!-- Blank node alamat -->
-  <rdf:Description rdf:nodeID="alamatZizi">
-    <rdf:type rdf:resource="https://schema.org/PostalAddress"/>
-    <schema:addressLocality>Kendari</schema:addressLocality>
-    <schema:addressRegion>Sulawesi Tenggara</schema:addressRegion>
-    <schema:addressCountry>ID</schema:addressCountry>
-  </rdf:Description>
+        <schema:sameAs rdf:resource="https://github.com/fadli-S"/>
 
+        <schema:address>
+            Kendari, Sulawesi Tenggara
+        </schema:address>
 
-  <!-- ══════════════════════════════════════════════════
-       INSTITUSI PENDIDIKAN
-  ═══════════════════════════════════════════════════ -->
+        <schema:identifier>F1G123025</schema:identifier>
+    </rdf:Description>
 
-  <rdf:Description rdf:about="https://zizi.github.io/#uho">
-    <rdf:type rdf:resource="https://zizi.github.io/ontologi#PerguruanTinggi"/>
-    <rdf:type rdf:resource="https://schema.org/CollegeOrUniversity"/>
-    <schema:name>Universitas Halu Oleo</schema:name>
-    <schema:alternateName>UHO</schema:alternateName>
-    <schema:url rdf:resource="https://uho.ac.id"/>
-    <ex:programStudi>S1 Ilmu Komputer</ex:programStudi>
-    <ex:fakultas>Fakultas Matematika dan Ilmu Pengetahuan Alam</ex:fakultas>
-    <ex:tahunMasuk rdf:datatype="http://www.w3.org/2001/XMLSchema#gYear">2021</ex:tahunMasuk>
-    <schema:address rdf:nodeID="alamatUHO"/>
-  </rdf:Description>
+    <!-- University -->
+    <rdf:Description rdf:about="https://fadli-S.github.io/#uho">
+        <rdf:type rdf:resource="https://schema.org/CollegeOrUniversity"/>
+        <schema:name>Universitas Halu Oleo</schema:name>
+        <schema:address>Kendari, Sulawesi Tenggara</schema:address>
+    </rdf:Description>
 
-  <rdf:Description rdf:nodeID="alamatUHO">
-    <rdf:type rdf:resource="https://schema.org/PostalAddress"/>
-    <schema:addressLocality>Kendari</schema:addressLocality>
-    <schema:addressRegion>Sulawesi Tenggara</schema:addressRegion>
-    <schema:addressCountry>ID</schema:addressCountry>
-  </rdf:Description>
+    <!-- High School -->
+    <rdf:Description rdf:about="https://fadli-S.github.io/#smkn4">
+        <rdf:type rdf:resource="https://schema.org/HighSchool"/>
+        <schema:name>SMKN 4 Kendari</schema:name>
+    </rdf:Description>
 
-  <rdf:Description rdf:about="https://zizi.github.io/#sma">
-    <rdf:type rdf:resource="https://zizi.github.io/ontologi#SekolahMenengahAtas"/>
-    <rdf:type rdf:resource="https://schema.org/EducationalOrganization"/>
-    <schema:name>SMA Negeri [GANTI nama SMA-mu]</schema:name>   <!-- GANTI -->
-    <ex:tahunMasuk  rdf:datatype="http://www.w3.org/2001/XMLSchema#gYear">2018</ex:tahunMasuk>
-    <ex:tahunLulus  rdf:datatype="http://www.w3.org/2001/XMLSchema#gYear">2021</ex:tahunLulus>
-  </rdf:Description>
+    <!-- Organization -->
+    <rdf:Description rdf:about="https://fadli-S.github.io/#hmps">
+        <rdf:type rdf:resource="https://schema.org/Organization"/>
+        <schema:name>HMPS Ilmu Komputer</schema:name>
+    </rdf:Description>
 
-  <rdf:Description rdf:about="https://zizi.github.io/#smp">
-    <rdf:type rdf:resource="https://zizi.github.io/ontologi#SekolahMenengahPertama"/>
-    <rdf:type rdf:resource="https://schema.org/EducationalOrganization"/>
-    <schema:name>SMP Negeri [GANTI nama SMP-mu]</schema:name>   <!-- GANTI -->
-    <ex:tahunMasuk  rdf:datatype="http://www.w3.org/2001/XMLSchema#gYear">2015</ex:tahunMasuk>
-    <ex:tahunLulus  rdf:datatype="http://www.w3.org/2001/XMLSchema#gYear">2018</ex:tahunLulus>
-  </rdf:Description>
+    <!-- Skills -->
+    <rdf:Description rdf:about="https://fadli-S.github.io/#html">
+        <rdf:type rdf:resource="https://schema.org/DefinedTerm"/>
+        <schema:name>HTML</schema:name>
+    </rdf:Description>
 
-  <rdf:Description rdf:about="https://zizi.github.io/#sd">
-    <rdf:type rdf:resource="https://zizi.github.io/ontologi#SekolahDasar"/>
-    <rdf:type rdf:resource="https://schema.org/EducationalOrganization"/>
-    <schema:name>SDN [GANTI nama SD-mu]</schema:name>           <!-- GANTI -->
-    <ex:tahunMasuk  rdf:datatype="http://www.w3.org/2001/XMLSchema#gYear">2009</ex:tahunMasuk>
-    <ex:tahunLulus  rdf:datatype="http://www.w3.org/2001/XMLSchema#gYear">2015</ex:tahunLulus>
-  </rdf:Description>
+    <rdf:Description rdf:about="https://fadli-S.github.io/#css">
+        <rdf:type rdf:resource="https://schema.org/DefinedTerm"/>
+        <schema:name>CSS</schema:name>
+    </rdf:Description>
 
-
-  <!-- ══════════════════════════════════════════════════
-       ORGANISASI
-  ═══════════════════════════════════════════════════ -->
-
-  <rdf:Description rdf:about="https://zizi.github.io/#himatif">
-    <rdf:type rdf:resource="https://zizi.github.io/ontologi#OrganisasiMahasiswa"/>
-    <rdf:type rdf:resource="https://schema.org/Organization"/>
-    <schema:name>Himpunan Mahasiswa Ilmu Komputer UHO</schema:name>
-    <schema:alternateName>HIMATIF UHO</schema:alternateName>
-    <ex:peran>Anggota Aktif</ex:peran>
-    <ex:tahunMulai rdf:datatype="http://www.w3.org/2001/XMLSchema#gYear">2021</ex:tahunMulai>
-  </rdf:Description>
-
-  <rdf:Description rdf:about="https://zizi.github.io/#btn-kendari">
-    <rdf:type rdf:resource="https://zizi.github.io/ontologi#TempatMagang"/>
-    <rdf:type rdf:resource="https://schema.org/Organization"/>
-    <schema:name>PT Bank Tabungan Negara KC Kendari</schema:name>
-    <schema:alternateName>BTN KC Kendari</schema:alternateName>
-    <ex:peran>Praktikan IT (KKP)</ex:peran>
-    <ex:tahunMulai  rdf:datatype="http://www.w3.org/2001/XMLSchema#gYear">2024</ex:tahunMulai>
-    <ex:tahunSelesai rdf:datatype="http://www.w3.org/2001/XMLSchema#gYear">2024</ex:tahunSelesai>
-  </rdf:Description>
-
-
-  <!-- ══════════════════════════════════════════════════
-       SKILL
-  ═══════════════════════════════════════════════════ -->
-
-  <rdf:Description rdf:about="https://zizi.github.io/#skill-python">
-    <rdf:type rdf:resource="https://zizi.github.io/ontologi#SkillPemrograman"/>
-    <rdf:type rdf:resource="https://schema.org/DefinedTerm"/>
-    <schema:name>Python</schema:name>
-    <ex:tingkatKeahlian>Mahir</ex:tingkatKeahlian>
-    <ex:kategoriSkill>Bahasa Pemrograman</ex:kategoriSkill>
-  </rdf:Description>
-
-  <rdf:Description rdf:about="https://zizi.github.io/#skill-ml">
-    <rdf:type rdf:resource="https://zizi.github.io/ontologi#SkillKecerdasanBuatan"/>
-    <rdf:type rdf:resource="https://schema.org/DefinedTerm"/>
-    <schema:name>Machine Learning</schema:name>
-    <ex:tingkatKeahlian>Menengah</ex:tingkatKeahlian>
-    <ex:kategoriSkill>Kecerdasan Buatan</ex:kategoriSkill>
-  </rdf:Description>
-
-  <rdf:Description rdf:about="https://zizi.github.io/#skill-sparql">
-    <rdf:type rdf:resource="https://zizi.github.io/ontologi#SkillSemanticWeb"/>
-    <rdf:type rdf:resource="https://schema.org/DefinedTerm"/>
-    <schema:name>SPARQL</schema:name>
-    <ex:tingkatKeahlian>Menengah</ex:tingkatKeahlian>
-    <ex:kategoriSkill>Query Language</ex:kategoriSkill>
-    <ex:digunakanDalam rdf:resource="https://zizi.github.io/#proyek-oleholeh"/>
-  </rdf:Description>
-
-  <rdf:Description rdf:about="https://zizi.github.io/#skill-php">
-    <rdf:type rdf:resource="https://zizi.github.io/ontologi#SkillPemrograman"/>
-    <rdf:type rdf:resource="https://schema.org/DefinedTerm"/>
-    <schema:name>PHP dan Laravel</schema:name>
-    <ex:tingkatKeahlian>Mahir</ex:tingkatKeahlian>
-    <ex:kategoriSkill>Bahasa Pemrograman</ex:kategoriSkill>
-  </rdf:Description>
-
-  <rdf:Description rdf:about="https://zizi.github.io/#skill-mysql">
-    <rdf:type rdf:resource="https://zizi.github.io/ontologi#SkillDatabase"/>
-    <rdf:type rdf:resource="https://schema.org/DefinedTerm"/>
-    <schema:name>MySQL</schema:name>
-    <ex:tingkatKeahlian>Mahir</ex:tingkatKeahlian>
-    <ex:kategoriSkill>Database</ex:kategoriSkill>
-  </rdf:Description>
-
-  <rdf:Description rdf:about="https://zizi.github.io/#skill-semanticweb">
-    <rdf:type rdf:resource="https://zizi.github.io/ontologi#SkillSemanticWeb"/>
-    <rdf:type rdf:resource="https://schema.org/DefinedTerm"/>
-    <schema:name>Semantic Web (RDF, OWL)</schema:name>
-    <ex:tingkatKeahlian>Menengah</ex:tingkatKeahlian>
-    <ex:kategoriSkill>Web Technology</ex:kategoriSkill>
-  </rdf:Description>
-
-
-  <!-- ══════════════════════════════════════════════════
-       PROYEK
-  ═══════════════════════════════════════════════════ -->
-
-  <rdf:Description rdf:about="https://zizi.github.io/#proyek-sentimen">
-    <rdf:type rdf:resource="https://zizi.github.io/ontologi#ProyekAkademik"/>
-    <rdf:type rdf:resource="https://schema.org/CreativeWork"/>
-    <schema:name>Analisis Sentimen Feedback Praktikum FMIPA UHO</schema:name>
-    <schema:description>Sistem analisis sentimen dan ekstraksi topik menggunakan TF-IDF dan SVM untuk data feedback praktikum laboratorium FMIPA UHO.</schema:description>
-    <schema:keywords>Sentiment Analysis, TF-IDF, SVM, NLP, Python</schema:keywords>
-    <ex:teknologi>Python, TF-IDF, SVM</ex:teknologi>
-    <ex:kategoriProyek>Machine Learning</ex:kategoriProyek>
-  </rdf:Description>
-
-  <rdf:Description rdf:about="https://zizi.github.io/#proyek-oleholeh">
-    <rdf:type rdf:resource="https://zizi.github.io/ontologi#ProyekAkademik"/>
-    <rdf:type rdf:resource="https://schema.org/CreativeWork"/>
-    <schema:name>Sistem Informasi Oleh-Oleh Khas Kendari</schema:name>
-    <schema:description>Sistem informasi souvenir berbasis Semantic Web menggunakan PHP, EasyRDF, RDF/XML, OWL, dan SPARQL untuk pencarian semantik produk oleh-oleh khas Kendari.</schema:description>
-    <schema:keywords>Semantic Web, RDF, SPARQL, PHP, EasyRDF, OWL</schema:keywords>
-    <ex:teknologi>PHP, EasyRDF, SPARQL, RDF/XML, OWL</ex:teknologi>
-    <ex:kategoriProyek>Semantic Web</ex:kategoriProyek>
-  </rdf:Description>
+    <rdf:Description rdf:about="https://fadli-S.github.io/#php">
+        <rdf:type rdf:resource="https://schema.org/DefinedTerm"/>
+        <schema:name>PHP</schema:name>
+    </rdf:Description>
 
 </rdf:RDF>
