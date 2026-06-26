@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Profil semantik Muhammad Fadli S — mahasiswa Ilmu Komputer UHO, direpresentasikan sebagai linked data menggunakan Schema.org, JSON-LD, RDF, dan OWL." />
+  <title>Muhammad Fadli S — Semantic Web Profile</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="css/style.css" />
+
+  <!-- ══════════════════════════════════════════════════════
+       JSON-LD — @graph: Person + CreativeWork + Event
+       Setiap entitas dihubungkan lewat @id
+  ═══════════════════════════════════════════════════════ -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@id": "#fadli",
+        "@type": "Person",
+        "name": "Muhammad Fadli S",
+        "identifier": "F1G123025",
+        "image": "assets/foto-profil.jpg",
+        "email": "mailto:fadlinan347@gmail.com",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Kendari",
+          "addressRegion": "Sulawesi Tenggara",
+          "addressCountry": "ID"
+        },
+        "alumniOf": [
+          {
+            "@type": "CollegeOrUniversity",
+            "name": "Universitas Halu Oleo",
+            "sameAs": [
+              "https://dbpedia.org/page/Haluoleo_University",
+              "https://www.wikidata.org/wiki/Q5643706"
+            ]
+          },
+          {
+            "@type": "HighSchool",
+            "name": "SMK Negeri 4 Kendari"
+          }
+        ],
+        "memberOf": {
+          "@type": "Organization",
+          "name": "Himpunan Mahasiswa Ilmu Komputer UHO (HMPSILMUKOMPUTER)"
+        },
+        "knowsAbout": [
+          { "@type": "DefinedTerm", "name": "HTML",   "sameAs": "https://dbpedia.org/page/HTML" },
+          { "@type": "DefinedTerm", "name": "CSS",    "sameAs": "https://dbpedia.org/page/CSS" },
+          { "@type": "DefinedTerm", "name": "PHP",    "sameAs": "https://dbpedia.org/page/PHP_(programming_language)" },
+          { "@type": "DefinedTerm", "name": "Python", "sameAs": "https://dbpedia.org/page/Python_(programming_language)" },
+          { "@type": "DefinedTerm", "name": "RDF/OWL","sameAs": "https://dbpedia.org/page/Web_Ontology_Language" }
+        ],
+        "subjectOf": [
+          { "@id": "#proyek-semanticweb" },
+          { "@id": "#event-seminar" }
+        ],
+        "sameAs": [
+          "https://github.com/USERNAME_GITHUB_KAMU",
+          "https://www.linkedin.com/in/USERNAME_LINKEDIN_KAMU"
+        ]
+      },
+      {
+        "@id": "#proyek-semanticweb",
+        "@type": "CreativeWork",
+        "additionalType": "Project",
+        "name": "Portofolio Website Semantic Web",
+        "creator": { "@id": "#fadli" },
+        "description": "Website profil pribadi berbasis ontologi OWL, JSON-LD, dan koneksi DBpedia & Wikidata.",
+        "keywords": "Semantic Web, OWL, RDF, JSON-LD, Schema.org",
+        "url": "https://USERNAME_GITHUB_KAMU.github.io/semantic-profile"
+      },
+      {
+        "@id": "#event-seminar",
+        "@type": "Event",
+        "name": "Seminar Teknologi Informasi",
+        "startDate": "2025-09-10",
+        "location": {
+          "@type": "Place",
+          "name": "Universitas Halu Oleo, Kendari"
+        },
+        "attendee": { "@id": "#fadli" }
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════════════════
+     NAVIGATION
+═══════════════════════════════════════════════════════ -->
+<nav class="nav" role="navigation" aria-label="Menu utama">
+  <span class="nav__brand"><span>F.</span> Fadli&nbsp;S</span>
+  <button class="nav__toggle" id="navToggle" aria-label="Buka menu" aria-expanded="false">☰</button>
+  <ul class="nav__links" id="navLinks">
+    <li><a href="#about">About</a></li>
+    <li><a href="#education">Education</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#organization">Organization</a></li>
+    <li><a href="#project">Project</a></li>
+    <li><a href="#event">Event</a></li>
+    <li><a href="#spo">Relasi SPO</a></li>
+  </ul>
+</nav>
+
+<!-- ══════════════════════════════════════════════════════
+     HERO — Graf relasi semantik
+═══════════════════════════════════════════════════════ -->
+<header class="hero">
+  <div class="hero__text">
+    <p class="eyebrow">rdf:type owl:NamedIndividual</p>
+    <h1>Bukan sekadar profil—<br><em>ini graf data saya.</em></h1>
+    <p class="hero__sub">
+      Setiap garis di samping adalah satu triple
+      <strong style="color:var(--skill)">Subject–Predicate–Object</strong>
+      dari ontologi OWL yang saya buat.
+    </p>
+  </div>
+
+  <!-- Graf SVG -->
+  <svg class="hero__graph" viewBox="0 0 780 440"
+       xmlns="http://www.w3.org/2000/svg"
+       role="img" aria-label="Graf relasi semantik Muhammad Fadli S">
+
+    <!-- Edges -->
+    <g class="edge">
+      <line x1="390" y1="230" x2="390" y2="80"/>
+      <text x="390" y="160">studiesAt</text>
+    </g>
+    <g class="edge">
+      <line x1="390" y1="230" x2="630" y2="135"/>
+      <text x="535" y="170">alumniOf</text>
+    </g>
+    <g class="edge">
+      <line x1="390" y1="230" x2="145" y2="135"/>
+      <text x="245" y="170">memberOf</text>
+    </g>
+    <g class="edge">
+      <line x1="390" y1="230" x2="145" y2="370"/>
+      <text x="235" y="312">hasSkill</text>
+    </g>
+    <g class="edge">
+      <line x1="390" y1="230" x2="390" y2="415"/>
+      <text x="390" y="330">hasSkill</text>
+    </g>
+    <g class="edge">
+      <line x1="390" y1="230" x2="635" y2="370"/>
+      <text x="540" y="312">hasSkill</text>
+    </g>
+    <g class="edge">
+      <line x1="390" y1="230" x2="660" y2="270"/>
+      <text x="560" y="247">worksOn</text>
+    </g>
+
+    <!-- Nodes -->
+    <g class="node node--person">
+      <circle cx="390" cy="230" r="36"/>
+      <text x="390" y="226">Fadli</text>
+      <text x="390" y="240" style="font-size:9px;font-weight:400;fill:rgba(255,255,255,.7)">Person</text>
+    </g>
+    <g class="node node--edu">
+      <circle cx="390" cy="80" r="28"/>
+      <text x="390" y="76">UHO</text>
+      <text x="390" y="89" style="font-size:8px;font-weight:400;fill:rgba(255,255,255,.75)">Univ</text>
+    </g>
+    <g class="node node--edu">
+      <circle cx="630" cy="135" r="26"/>
+      <text x="630" y="131">SMKN 4</text>
+      <text x="630" y="143" style="font-size:8px;font-weight:400;fill:rgba(255,255,255,.75)">HighSchool</text>
+    </g>
+    <g class="node node--org">
+      <circle cx="145" cy="135" r="27"/>
+      <text x="145" y="131">HIMATIF</text>
+      <text x="145" y="143" style="font-size:8px;font-weight:400;fill:rgba(255,255,255,.8)">Org</text>
+    </g>
+    <g class="node node--skill">
+      <circle cx="145" cy="370" r="25"/>
+      <text x="145" y="374">HTML</text>
+    </g>
+    <g class="node node--skill">
+      <circle cx="390" cy="415" r="25"/>
+      <text x="390" y="419">CSS</text>
+    </g>
+    <g class="node node--skill">
+      <circle cx="635" cy="370" r="25"/>
+      <text x="635" y="374">PHP</text>
+    </g>
+    <g class="node node--skill">
+      <circle cx="660" cy="270" r="26"/>
+      <text x="660" y="274">Proyek</text>
+    </g>
+  </svg>
+</header>
+
+<!-- ══════════════════════════════════════════════════════
+     MAIN CONTENT
+═══════════════════════════════════════════════════════ -->
+<main>
+
+  <!-- ── ABOUT ── -->
+  <section id="about" class="section">
+    <p class="eyebrow">schema:Person</p>
+    <h2>Tentang Saya</h2>
+    <div class="card card--profile">
+      <img class="profile-photo"
+           src="assets/foto-profil.jpg"
+           alt="Foto profil Muhammad Fadli S"
+           onerror="this.style.display='none'" />
+      <div class="profile-info">
+        <p><strong>Nama</strong> &nbsp; Muhammad Fadli S</p>
+        <p><strong>NIM</strong> &nbsp;&nbsp; F1G123025</p>
+        <p><strong>Domisili</strong> &nbsp; Kendari, Sulawesi Tenggara</p>
+        <p><strong>Email</strong> &nbsp; fadlinan347@gmail.com</p>
+        <p class="muted" style="margin-top:.7rem">
+          Mahasiswa Ilmu Komputer yang sedang membangun representasi diri
+          sebagai data semantik — menggunakan OWL, RDF, dan JSON-LD.
+        </p>
+        <div class="linked-data-grid">
+          <a class="ld-badge ld-badge--github"
+             href="https://github.com/USERNAME_GITHUB_KAMU"
+             target="_blank" rel="noopener">⚙ GitHub</a>
+          <a class="ld-badge ld-badge--linkedin"
+             href="https://linkedin.com/in/USERNAME_LINKEDIN_KAMU"
+             target="_blank" rel="noopener">in LinkedIn</a>
+          <a class="ld-badge ld-badge--dbpedia"
+             href="https://dbpedia.org/page/Haluoleo_University"
+             target="_blank" rel="noopener">◈ DBpedia UHO</a>
+          <a class="ld-badge ld-badge--wikidata"
+             href="https://www.wikidata.org/wiki/Q5643706"
+             target="_blank" rel="noopener">⊛ Wikidata UHO</a>
+        </div>
+      </div>
+    </div>
+
+    <button class="jsonld-toggle" data-target="json-person">Lihat JSON-LD ↓</button>
+    <pre class="jsonld-block" id="json-person" hidden>{
+  "@id": "#fadli",
+  "@type": "Person",
+  "name": "Muhammad Fadli S",
+  "identifier": "F1G123025",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Kendari",
+    "addressRegion": "Sulawesi Tenggara",
+    "addressCountry": "ID"
+  },
+  "sameAs": [
+    "https://github.com/USERNAME_GITHUB_KAMU",
+    "https://www.linkedin.com/in/USERNAME_LINKEDIN_KAMU"
+  ]
+}</pre>
+  </section>
+
+  <!-- ── EDUCATION ── -->
+  <section id="education" class="section">
+    <p class="eyebrow">schema:CollegeOrUniversity · schema:HighSchool · alumniOf</p>
+    <h2>Riwayat Pendidikan</h2>
+    <div class="card-grid">
+      <div class="card card--edu">
+        <h3>Universitas Halu Oleo</h3>
+        <p class="muted">S1 Ilmu Komputer · Kendari · 2023 – Sekarang</p>
+        <p class="muted" style="margin-top:.35rem;font-family:var(--font-mono);font-size:.75rem;color:var(--edu)">studiesAt · schema:CollegeOrUniversity</p>
+        <div style="margin-top:.75rem;display:flex;gap:.5rem;flex-wrap:wrap">
+          <a class="dbpedia-link" href="https://dbpedia.org/page/Haluoleo_University" target="_blank" rel="noopener">◈ DBpedia ↗</a>
+          <a class="dbpedia-link" href="https://www.wikidata.org/wiki/Q5643706" target="_blank" rel="noopener" style="color:var(--skill);background:var(--skill-glow);border-color:rgba(217,164,65,.25)">⊛ Wikidata ↗</a>
+        </div>
+      </div>
+      <div class="card card--edu">
+        <h3>SMK Negeri 4 Kendari</h3>
+        <p class="muted">Teknik Komputer dan Jaringan · Kendari · Lulus 2023</p>
+        <p class="muted" style="margin-top:.35rem;font-family:var(--font-mono);font-size:.75rem;color:var(--edu)">graduatedFrom · schema:HighSchool</p>
+      </div>
+    </div>
+
+    <button class="jsonld-toggle" data-target="json-edu" style="margin-top:1rem">Lihat JSON-LD ↓</button>
+    <pre class="jsonld-block" id="json-edu" hidden>{
+  "alumniOf": [
+    {
+      "@type": "CollegeOrUniversity",
+      "name": "Universitas Halu Oleo",
+      "sameAs": [
+        "https://dbpedia.org/page/Haluoleo_University",
+        "https://www.wikidata.org/wiki/Q5643706"
+      ]
+    },
+    {
+      "@type": "HighSchool",
+      "name": "SMK Negeri 4 Kendari"
+    }
+  ]
+}</pre>
+  </section>
+
+  <!-- ── SKILLS ── -->
+  <section id="skills" class="section">
+    <p class="eyebrow">schema:DefinedTerm · knowsAbout</p>
+    <h2>Skill</h2>
+    <div class="card-grid">
+      <div class="card card--skill">
+        <h3>HTML</h3>
+        <p class="muted" style="font-size:.8rem">Markup language</p>
+        <a class="dbpedia-link" href="https://dbpedia.org/page/HTML" target="_blank" rel="noopener">◈ DBpedia ↗</a>
+      </div>
+      <div class="card card--skill">
+        <h3>CSS</h3>
+        <p class="muted" style="font-size:.8rem">Styling language</p>
+        <a class="dbpedia-link" href="https://dbpedia.org/page/CSS" target="_blank" rel="noopener">◈ DBpedia ↗</a>
+      </div>
+      <div class="card card--skill">
+        <h3>PHP</h3>
+        <p class="muted" style="font-size:.8rem">Server-side scripting</p>
+        <a class="dbpedia-link" href="https://dbpedia.org/page/PHP_(programming_language)" target="_blank" rel="noopener">◈ DBpedia ↗</a>
+      </div>
+      <div class="card card--skill">
+        <h3>Python</h3>
+        <p class="muted" style="font-size:.8rem">General-purpose language</p>
+        <a class="dbpedia-link" href="https://dbpedia.org/page/Python_(programming_language)" target="_blank" rel="noopener">◈ DBpedia ↗</a>
+      </div>
+      <div class="card card--skill">
+        <h3>RDF / OWL</h3>
+        <p class="muted" style="font-size:.8rem">Semantic Web technology</p>
+        <a class="dbpedia-link" href="https://dbpedia.org/page/Web_Ontology_Language" target="_blank" rel="noopener">◈ DBpedia ↗</a>
+      </div>
+    </div>
+
+    <button class="jsonld-toggle" data-target="json-skill" style="margin-top:1rem">Lihat JSON-LD ↓</button>
+    <pre class="jsonld-block" id="json-skill" hidden>{
+  "knowsAbout": [
+    { "@type": "DefinedTerm", "name": "HTML",
+      "sameAs": "https://dbpedia.org/page/HTML" },
+    { "@type": "DefinedTerm", "name": "CSS",
+      "sameAs": "https://dbpedia.org/page/CSS" },
+    { "@type": "DefinedTerm", "name": "PHP",
+      "sameAs": "https://dbpedia.org/page/PHP_(programming_language)" },
+    { "@type": "DefinedTerm", "name": "Python",
+      "sameAs": "https://dbpedia.org/page/Python_(programming_language)" },
+    { "@type": "DefinedTerm", "name": "RDF/OWL",
+      "sameAs": "https://dbpedia.org/page/Web_Ontology_Language" }
+  ]
+}</pre>
+  </section>
+
+  <!-- ── ORGANIZATION ── -->
+  <section id="organization" class="section">
+    <p class="eyebrow">schema:Organization · memberOf</p>
+    <h2>Organisasi</h2>
+    <div class="card card--org">
+      <h3>HMPSILMUKOMPUTER</h3>
+      <p class="muted">Himpunan Mahasiswa Ilmu Komputer UHO — Universitas Halu Oleo</p>
+      <p class="muted" style="margin-top:.35rem;font-family:var(--font-mono);font-size:.75rem;color:var(--org)">memberOf · schema:Organization</p>
+    </div>
+
+    <button class="jsonld-toggle" data-target="json-org" style="margin-top:1rem">Lihat JSON-LD ↓</button>
+    <pre class="jsonld-block" id="json-org" hidden>{
+  "memberOf": {
+    "@type": "Organization",
+    "name": "HMPSILMUKOMPUTER — Himpunan Mahasiswa Ilmu Komputer UHO"
+  }
+}</pre>
+  </section>
+
+  <!-- ── PROJECT ── -->
+  <section id="project" class="section">
+    <p class="eyebrow">schema:CreativeWork · subjectOf</p>
+    <h2>Project</h2>
+    <div class="card card--project">
+      <h3>Portofolio Website Semantic Web</h3>
+      <p class="muted" style="margin-top:.4rem">
+        Website profil pribadi berbasis ontologi OWL, JSON-LD, dan koneksi
+        DBpedia &amp; Wikidata — yang sedang kamu lihat sekarang.
+      </p>
+      <p class="muted" style="margin-top:.35rem;font-family:var(--font-mono);font-size:.75rem;color:var(--accent)">subjectOf · schema:CreativeWork</p>
+    </div>
+
+    <button class="jsonld-toggle" data-target="json-project" style="margin-top:1rem">Lihat JSON-LD ↓</button>
+    <pre class="jsonld-block" id="json-project" hidden>{
+  "@id": "#proyek-semanticweb",
+  "@type": "CreativeWork",
+  "additionalType": "Project",
+  "name": "Portofolio Website Semantic Web",
+  "creator": { "@id": "#fadli" },
+  "description": "Website profil berbasis OWL, JSON-LD, DBpedia, Wikidata.",
+  "keywords": "Semantic Web, OWL, RDF, JSON-LD, Schema.org"
+}</pre>
+  </section>
+
+  <!-- ── EVENT ── -->
+  <section id="event" class="section">
+    <p class="eyebrow">schema:Event · attendee</p>
+    <h2>Event</h2>
+    <div class="card card--event">
+      <h3>Seminar Teknologi Informasi</h3>
+      <span class="event-date">📅 10 September 2025</span>
+      <p class="muted" style="margin-top:.6rem">Universitas Halu Oleo, Kendari</p>
+      <p class="muted" style="margin-top:.35rem;font-family:var(--font-mono);font-size:.75rem;color:var(--person)">attendee · schema:Event</p>
+    </div>
+
+    <button class="jsonld-toggle" data-target="json-event" style="margin-top:1rem">Lihat JSON-LD ↓</button>
+    <pre class="jsonld-block" id="json-event" hidden>{
+  "@id": "#event-seminar",
+  "@type": "Event",
+  "name": "Seminar Teknologi Informasi",
+  "startDate": "2025-09-10",
+  "location": {
+    "@type": "Place",
+    "name": "Universitas Halu Oleo, Kendari"
+  },
+  "attendee": { "@id": "#fadli" }
+}</pre>
+  </section>
+
+  <!-- ── TABEL RELASI SPO ── -->
+  <section id="spo" class="section">
+    <p class="eyebrow">Subject – Predicate – Object</p>
+    <h2>Tabel Relasi Semantik</h2>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Subject</th>
+            <th>Predicate</th>
+            <th>Object</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Fadli</td>
+            <td>rdf:type</td>
+            <td>schema:Person · ex:Mahasiswa</td>
+          </tr>
+          <tr>
+            <td>Fadli</td>
+            <td>studiesAt / alumniOf</td>
+            <td>Universitas Halu Oleo</td>
+          </tr>
+          <tr>
+            <td>Fadli</td>
+            <td>graduatedFrom / alumniOf</td>
+            <td>SMK Negeri 4 Kendari</td>
+          </tr>
+          <tr>
+            <td>Fadli</td>
+            <td>memberOf</td>
+            <td>HMPSILMUKOMPUTER</td>
+          </tr>
+          <tr>
+            <td>Fadli</td>
+            <td>knowsAbout / hasSkill</td>
+            <td>HTML · CSS · PHP · Python · RDF/OWL</td>
+          </tr>
+          <tr>
+            <td>Fadli</td>
+            <td>subjectOf / worksOn</td>
+            <td>Portofolio Website Semantic Web</td>
+          </tr>
+          <tr>
+            <td>Fadli</td>
+            <td>attendee (Event)</td>
+            <td>Seminar Teknologi Informasi</td>
+          </tr>
+          <tr>
+            <td>Universitas Halu Oleo</td>
+            <td>rdf:type</td>
+            <td>schema:CollegeOrUniversity · ex:PerguruanTinggi</td>
+          </tr>
+          <tr>
+            <td>HMPSILMUKOMPUTER</td>
+            <td>rdf:type</td>
+            <td>schema:Organization · ex:OrganisasiMahasiswa</td>
+          </tr>
+          <tr>
+            <td>HTML</td>
+            <td>rdf:type</td>
+            <td>schema:DefinedTerm · ex:SkillWebTechnology</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Download RDF & OWL -->
+    <div style="margin-top:1.5rem">
+      <p class="muted" style="margin-bottom:.5rem">📂 Unduh file ontologi &amp; data RDF:</p>
+      <div class="download-grid">
+        <a class="download-btn download-btn--owl" href="../ontologi.owl" download>
+          🦉 ontologi.owl
+        </a>
+        <a class="download-btn download-btn--rdf" href="../profil.rdf" download>
+          🔗 profil.rdf
+        </a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ══════════════════════════════════════════════════════
+     FOOTER
+═══════════════════════════════════════════════════════ -->
+<footer class="footer">
+  <p>
+    Muhammad Fadli S · F1G123025 · Ilmu Komputer UHO &nbsp;|&nbsp;
+    <a href="https://github.com/USERNAME_GITHUB_KAMU" target="_blank" rel="noopener">GitHub</a> ·
+    <a href="https://linkedin.com/in/USERNAME_LINKEDIN_KAMU" target="_blank" rel="noopener">LinkedIn</a>
+    &nbsp;|&nbsp;
+    <a href="https://validator.schema.org" target="_blank" rel="noopener">Validasi Schema</a> ·
+    <a href="https://search.google.com/test/rich-results" target="_blank" rel="noopener">Rich Results Test</a>
+  </p>
+</footer>
+
+<!-- JS -->
+<script src="js/script.js"></script>
+</body>
+</html>

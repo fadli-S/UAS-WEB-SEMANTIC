@@ -1,0 +1,452 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE rdf:RDF [
+    <!ENTITY owl  "http://www.w3.org/2002/07/owl#" >
+    <!ENTITY rdf  "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
+    <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
+    <!ENTITY xsd  "http://www.w3.org/2001/XMLSchema#" >
+    <!ENTITY ex   "https://zizi.github.io/ontologi#" >
+]>
+
+<!--
+  ╔══════════════════════════════════════════════════════════╗
+  ║  ONTOLOGI PROFIL MAHASISWA — versi Protégé-compatible   ║
+  ║  Cara pakai di Protégé:                                  ║
+  ║  File → Open → pilih file ini → OK                      ║
+  ║  Lalu edit di tab Classes, Object Properties, dll.       ║
+  ╚══════════════════════════════════════════════════════════╝
+-->
+
+<rdf:RDF
+    xmlns:owl  ="http://www.w3.org/2002/07/owl#"
+    xmlns:rdf  ="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:rdfs ="http://www.w3.org/2000/01/rdf-schema#"
+    xmlns:xsd  ="http://www.w3.org/2001/XMLSchema#"
+    xmlns:ex   ="https://zizi.github.io/ontologi#"
+    xmlns:schema="https://schema.org/"
+    xml:base   ="https://zizi.github.io/ontologi">
+
+    <!-- ═══════════════════════════════
+         DEKLARASI ONTOLOGI
+    ════════════════════════════════ -->
+    <owl:Ontology rdf:about="https://zizi.github.io/ontologi">
+        <rdfs:label xml:lang="id">Ontologi Profil Mahasiswa</rdfs:label>
+        <rdfs:comment xml:lang="id">
+            Ontologi untuk merepresentasikan profil mahasiswa Ilmu Komputer
+            Universitas Halu Oleo. Mencakup kelas: Mahasiswa, InstitusiPendidikan,
+            Organisasi, Skill, dan Proyek beserta relasi antar-kelas.
+        </rdfs:comment>
+        <owl:versionInfo>1.0</owl:versionInfo>
+        <owl:versionIRI rdf:resource="https://zizi.github.io/ontologi/v1.0"/>
+    </owl:Ontology>
+
+
+    <!-- ═══════════════════════════════════════════════════════
+         KELAS-KELAS (owl:Class)
+         Hierarki dari atas ke bawah
+    ════════════════════════════════════════════════════════ -->
+
+    <!-- ─── 1. Orang (root) ─── -->
+    <owl:Class rdf:about="&ex;Orang">
+        <rdfs:label xml:lang="id">Orang</rdfs:label>
+        <rdfs:comment xml:lang="id">Representasi umum seorang individu.</rdfs:comment>
+        <rdfs:subClassOf rdf:resource="http://xmlns.com/foaf/0.1/Person"/>
+    </owl:Class>
+
+    <!-- ─── 2. Mahasiswa ─── -->
+    <owl:Class rdf:about="&ex;Mahasiswa">
+        <rdfs:label xml:lang="id">Mahasiswa</rdfs:label>
+        <rdfs:comment xml:lang="id">Seseorang yang sedang menempuh pendidikan tinggi.</rdfs:comment>
+        <rdfs:subClassOf rdf:resource="&ex;Orang"/>
+        <!-- Restriction: wajib terdaftar di minimal 1 PerguruanTinggi -->
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&ex;belajarDi"/>
+                <owl:someValuesFrom rdf:resource="&ex;PerguruanTinggi"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <!-- Restriction: wajib punya minimal 1 Skill -->
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&ex;menguasaiSkill"/>
+                <owl:someValuesFrom rdf:resource="&ex;Skill"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+
+
+    <!-- ─── 3. Institusi Pendidikan ─── -->
+    <owl:Class rdf:about="&ex;InstitusiPendidikan">
+        <rdfs:label xml:lang="id">Institusi Pendidikan</rdfs:label>
+        <rdfs:comment xml:lang="id">Lembaga pendidikan formal dari SD hingga perguruan tinggi.</rdfs:comment>
+        <rdfs:subClassOf rdf:resource="https://schema.org/EducationalOrganization"/>
+    </owl:Class>
+
+    <owl:Class rdf:about="&ex;SekolahDasar">
+        <rdfs:label xml:lang="id">Sekolah Dasar</rdfs:label>
+        <rdfs:comment xml:lang="id">Pendidikan dasar 6 tahun (kelas 1–6).</rdfs:comment>
+        <rdfs:subClassOf rdf:resource="&ex;InstitusiPendidikan"/>
+    </owl:Class>
+
+    <owl:Class rdf:about="&ex;SekolahMenengahPertama">
+        <rdfs:label xml:lang="id">Sekolah Menengah Pertama</rdfs:label>
+        <rdfs:comment xml:lang="id">Pendidikan menengah pertama 3 tahun (kelas 7–9).</rdfs:comment>
+        <rdfs:subClassOf rdf:resource="&ex;InstitusiPendidikan"/>
+    </owl:Class>
+
+    <owl:Class rdf:about="&ex;SekolahMenengahAtas">
+        <rdfs:label xml:lang="id">Sekolah Menengah Atas</rdfs:label>
+        <rdfs:comment xml:lang="id">Pendidikan menengah atas 3 tahun (kelas 10–12).</rdfs:comment>
+        <rdfs:subClassOf rdf:resource="&ex;InstitusiPendidikan"/>
+    </owl:Class>
+
+    <owl:Class rdf:about="&ex;PerguruanTinggi">
+        <rdfs:label xml:lang="id">Perguruan Tinggi</rdfs:label>
+        <rdfs:comment xml:lang="id">Institusi pendidikan tinggi (universitas, institut, politeknik).</rdfs:comment>
+        <rdfs:subClassOf rdf:resource="&ex;InstitusiPendidikan"/>
+        <rdfs:subClassOf rdf:resource="https://schema.org/CollegeOrUniversity"/>
+    </owl:Class>
+
+
+    <!-- ─── 4. Organisasi ─── -->
+    <owl:Class rdf:about="&ex;Organisasi">
+        <rdfs:label xml:lang="id">Organisasi</rdfs:label>
+        <rdfs:comment xml:lang="id">Kelompok atau lembaga yang terorganisir secara formal.</rdfs:comment>
+        <rdfs:subClassOf rdf:resource="https://schema.org/Organization"/>
+    </owl:Class>
+
+    <owl:Class rdf:about="&ex;OrganisasiMahasiswa">
+        <rdfs:label xml:lang="id">Organisasi Mahasiswa</rdfs:label>
+        <rdfs:comment xml:lang="id">Himpunan, BEM, UKM, atau kepanitiaan di lingkungan kampus.</rdfs:comment>
+        <rdfs:subClassOf rdf:resource="&ex;Organisasi"/>
+    </owl:Class>
+
+    <owl:Class rdf:about="&ex;TempatMagang">
+        <rdfs:label xml:lang="id">Tempat Magang / KKP</rdfs:label>
+        <rdfs:comment xml:lang="id">Instansi tempat mahasiswa melaksanakan kerja praktik atau KKP.</rdfs:comment>
+        <rdfs:subClassOf rdf:resource="&ex;Organisasi"/>
+    </owl:Class>
+
+    <owl:Class rdf:about="&ex;InstansiPemerintah">
+        <rdfs:label xml:lang="id">Instansi Pemerintah</rdfs:label>
+        <rdfs:comment xml:lang="id">Lembaga atau dinas di bawah pemerintah daerah/pusat.</rdfs:comment>
+        <rdfs:subClassOf rdf:resource="&ex;Organisasi"/>
+    </owl:Class>
+
+
+    <!-- ─── 5. Skill ─── -->
+    <owl:Class rdf:about="&ex;Skill">
+        <rdfs:label xml:lang="id">Skill / Keahlian</rdfs:label>
+        <rdfs:comment xml:lang="id">Kemampuan teknis atau non-teknis yang dimiliki mahasiswa.</rdfs:comment>
+        <rdfs:subClassOf rdf:resource="https://schema.org/DefinedTerm"/>
+    </owl:Class>
+
+    <owl:Class rdf:about="&ex;SkillPemrograman">
+        <rdfs:label xml:lang="id">Skill Pemrograman</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&ex;Skill"/>
+    </owl:Class>
+
+    <owl:Class rdf:about="&ex;SkillKecerdasanBuatan">
+        <rdfs:label xml:lang="id">Skill Kecerdasan Buatan / AI</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&ex;Skill"/>
+    </owl:Class>
+
+    <owl:Class rdf:about="&ex;SkillDatabase">
+        <rdfs:label xml:lang="id">Skill Database</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&ex;Skill"/>
+    </owl:Class>
+
+    <owl:Class rdf:about="&ex;SkillWebTechnology">
+        <rdfs:label xml:lang="id">Skill Web Technology</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&ex;Skill"/>
+    </owl:Class>
+
+    <owl:Class rdf:about="&ex;SkillSemanticWeb">
+        <rdfs:label xml:lang="id">Skill Semantic Web</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&ex;SkillWebTechnology"/>
+    </owl:Class>
+
+
+    <!-- ─── 6. Proyek ─── -->
+    <owl:Class rdf:about="&ex;Proyek">
+        <rdfs:label xml:lang="id">Proyek</rdfs:label>
+        <rdfs:comment xml:lang="id">Karya atau pekerjaan yang dikerjakan oleh mahasiswa.</rdfs:comment>
+        <rdfs:subClassOf rdf:resource="https://schema.org/CreativeWork"/>
+    </owl:Class>
+
+    <owl:Class rdf:about="&ex;ProyekAkademik">
+        <rdfs:label xml:lang="id">Proyek Akademik</rdfs:label>
+        <rdfs:comment xml:lang="id">Proyek dalam konteks perkuliahan atau tugas akhir.</rdfs:comment>
+        <rdfs:subClassOf rdf:resource="&ex;Proyek"/>
+    </owl:Class>
+
+    <owl:Class rdf:about="&ex;ProyekMagang">
+        <rdfs:label xml:lang="id">Proyek Magang / PKL</rdfs:label>
+        <rdfs:comment xml:lang="id">Proyek yang dikerjakan saat magang atau PKL.</rdfs:comment>
+        <rdfs:subClassOf rdf:resource="&ex;Proyek"/>
+    </owl:Class>
+
+
+    <!-- ═══════════════════════════════════════════════════════
+         OBJECT PROPERTIES (relasi antar-individu)
+    ════════════════════════════════════════════════════════ -->
+
+    <!-- belajarDi: Mahasiswa → InstitusiPendidikan -->
+    <owl:ObjectProperty rdf:about="&ex;belajarDi">
+        <rdfs:label xml:lang="id">belajar di</rdfs:label>
+        <rdfs:comment xml:lang="id">Menghubungkan Mahasiswa ke institusi tempat ia belajar.</rdfs:comment>
+        <rdfs:domain rdf:resource="&ex;Mahasiswa"/>
+        <rdfs:range  rdf:resource="&ex;InstitusiPendidikan"/>
+        <rdfs:subPropertyOf rdf:resource="https://schema.org/alumniOf"/>
+    </owl:ObjectProperty>
+
+    <!-- menguasaiSkill: Mahasiswa → Skill -->
+    <owl:ObjectProperty rdf:about="&ex;menguasaiSkill">
+        <rdfs:label xml:lang="id">menguasai skill</rdfs:label>
+        <rdfs:comment xml:lang="id">Menghubungkan Mahasiswa ke Skill yang dikuasai.</rdfs:comment>
+        <rdfs:domain rdf:resource="&ex;Mahasiswa"/>
+        <rdfs:range  rdf:resource="&ex;Skill"/>
+        <rdfs:subPropertyOf rdf:resource="https://schema.org/knowsAbout"/>
+    </owl:ObjectProperty>
+
+    <!-- bergabungDengan: Mahasiswa → Organisasi -->
+    <owl:ObjectProperty rdf:about="&ex;bergabungDengan">
+        <rdfs:label xml:lang="id">bergabung dengan</rdfs:label>
+        <rdfs:comment xml:lang="id">Menghubungkan Mahasiswa ke Organisasi tempat ia bergabung.</rdfs:comment>
+        <rdfs:domain rdf:resource="&ex;Mahasiswa"/>
+        <rdfs:range  rdf:resource="&ex;Organisasi"/>
+        <rdfs:subPropertyOf rdf:resource="https://schema.org/memberOf"/>
+    </owl:ObjectProperty>
+
+    <!-- mengerjakanProyek: Mahasiswa → Proyek -->
+    <owl:ObjectProperty rdf:about="&ex;mengerjakanProyek">
+        <rdfs:label xml:lang="id">mengerjakan proyek</rdfs:label>
+        <rdfs:comment xml:lang="id">Menghubungkan Mahasiswa ke Proyek yang ia kerjakan.</rdfs:comment>
+        <rdfs:domain rdf:resource="&ex;Mahasiswa"/>
+        <rdfs:range  rdf:resource="&ex;Proyek"/>
+        <rdfs:subPropertyOf rdf:resource="https://schema.org/subjectOf"/>
+    </owl:ObjectProperty>
+
+    <!-- digunakanDalam: Skill → Proyek -->
+    <owl:ObjectProperty rdf:about="&ex;digunakanDalam">
+        <rdfs:label xml:lang="id">digunakan dalam</rdfs:label>
+        <rdfs:comment xml:lang="id">Menghubungkan Skill ke Proyek tempat skill tersebut digunakan.</rdfs:comment>
+        <rdfs:domain rdf:resource="&ex;Skill"/>
+        <rdfs:range  rdf:resource="&ex;Proyek"/>
+    </owl:ObjectProperty>
+
+    <!-- diselenggarakanOleh: Proyek → Organisasi -->
+    <owl:ObjectProperty rdf:about="&ex;diselenggarakanOleh">
+        <rdfs:label xml:lang="id">diselenggarakan oleh</rdfs:label>
+        <rdfs:comment xml:lang="id">Proyek yang dibuat dalam konteks suatu organisasi/instansi.</rdfs:comment>
+        <rdfs:domain rdf:resource="&ex;Proyek"/>
+        <rdfs:range  rdf:resource="&ex;Organisasi"/>
+    </owl:ObjectProperty>
+
+
+    <!-- ═══════════════════════════════════════════════════════
+         DATATYPE PROPERTIES (atribut nilai literal)
+    ════════════════════════════════════════════════════════ -->
+
+    <owl:DatatypeProperty rdf:about="&ex;tahunMasuk">
+        <rdfs:label xml:lang="id">tahun masuk</rdfs:label>
+        <rdfs:domain rdf:resource="&ex;InstitusiPendidikan"/>
+        <rdfs:range  rdf:resource="&xsd;gYear"/>
+    </owl:DatatypeProperty>
+
+    <owl:DatatypeProperty rdf:about="&ex;tahunLulus">
+        <rdfs:label xml:lang="id">tahun lulus</rdfs:label>
+        <rdfs:domain rdf:resource="&ex;InstitusiPendidikan"/>
+        <rdfs:range  rdf:resource="&xsd;gYear"/>
+    </owl:DatatypeProperty>
+
+    <owl:DatatypeProperty rdf:about="&ex;programStudi">
+        <rdfs:label xml:lang="id">program studi</rdfs:label>
+        <rdfs:domain rdf:resource="&ex;PerguruanTinggi"/>
+        <rdfs:range  rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+
+    <owl:DatatypeProperty rdf:about="&ex;fakultas">
+        <rdfs:label xml:lang="id">fakultas</rdfs:label>
+        <rdfs:domain rdf:resource="&ex;PerguruanTinggi"/>
+        <rdfs:range  rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+
+    <owl:DatatypeProperty rdf:about="&ex;peran">
+        <rdfs:label xml:lang="id">peran / jabatan</rdfs:label>
+        <rdfs:domain rdf:resource="&ex;Organisasi"/>
+        <rdfs:range  rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+
+    <owl:DatatypeProperty rdf:about="&ex;tahunMulai">
+        <rdfs:label xml:lang="id">tahun mulai</rdfs:label>
+        <rdfs:domain rdf:resource="&ex;Organisasi"/>
+        <rdfs:range  rdf:resource="&xsd;gYear"/>
+    </owl:DatatypeProperty>
+
+    <owl:DatatypeProperty rdf:about="&ex;tahunSelesai">
+        <rdfs:label xml:lang="id">tahun selesai</rdfs:label>
+        <rdfs:domain rdf:resource="&ex;Organisasi"/>
+        <rdfs:range  rdf:resource="&xsd;gYear"/>
+    </owl:DatatypeProperty>
+
+    <owl:DatatypeProperty rdf:about="&ex;tingkatKeahlian">
+        <rdfs:label xml:lang="id">tingkat keahlian</rdfs:label>
+        <rdfs:comment xml:lang="id">Nilai: Pemula / Menengah / Mahir</rdfs:comment>
+        <rdfs:domain rdf:resource="&ex;Skill"/>
+        <rdfs:range  rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+
+    <owl:DatatypeProperty rdf:about="&ex;kategoriSkill">
+        <rdfs:label xml:lang="id">kategori skill</rdfs:label>
+        <rdfs:domain rdf:resource="&ex;Skill"/>
+        <rdfs:range  rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+
+    <owl:DatatypeProperty rdf:about="&ex;teknologi">
+        <rdfs:label xml:lang="id">teknologi yang digunakan</rdfs:label>
+        <rdfs:domain rdf:resource="&ex;Proyek"/>
+        <rdfs:range  rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+
+    <owl:DatatypeProperty rdf:about="&ex;kategoriProyek">
+        <rdfs:label xml:lang="id">kategori proyek</rdfs:label>
+        <rdfs:domain rdf:resource="&ex;Proyek"/>
+        <rdfs:range  rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+
+
+    <!-- ═══════════════════════════════════════════════════════
+         INDIVIDUALS (data konkret — ganti dengan data kamu)
+         Di Protégé: tab "Individuals by class" untuk edit ini
+    ════════════════════════════════════════════════════════ -->
+
+    <!-- Individu: Zizi (Mahasiswa) -->
+    <owl:NamedIndividual rdf:about="&ex;Zizi">
+        <rdf:type rdf:resource="&ex;Mahasiswa"/>
+        <rdfs:label xml:lang="id">Zizi</rdfs:label>
+        <ex:belajarDi      rdf:resource="&ex;UniversitasHaluOleo"/>
+        <ex:belajarDi      rdf:resource="&ex;SMA_Kamu"/>
+        <ex:belajarDi      rdf:resource="&ex;SMP_Kamu"/>
+        <ex:belajarDi      rdf:resource="&ex;SD_Kamu"/>
+        <ex:menguasaiSkill rdf:resource="&ex;SkillPython"/>
+        <ex:menguasaiSkill rdf:resource="&ex;SkillML"/>
+        <ex:menguasaiSkill rdf:resource="&ex;SkillSPARQL"/>
+        <ex:menguasaiSkill rdf:resource="&ex;SkillPHP"/>
+        <ex:menguasaiSkill rdf:resource="&ex;SkillMySQL"/>
+        <ex:menguasaiSkill rdf:resource="&ex;SkillSemanticWebInst"/>
+        <ex:bergabungDengan rdf:resource="&ex;HMPSILMUKOMPUTER"/>
+        <ex:bergabungDengan rdf:resource="&ex;BTN_Kendari"/>
+        <ex:mengerjakanProyek rdf:resource="&ex;ProyekSentimen"/>
+        <ex:mengerjakanProyek rdf:resource="&ex;ProyekOlehOleh"/>
+    </owl:NamedIndividual>
+
+    <!-- Individu: Institusi Pendidikan -->
+    <owl:NamedIndividual rdf:about="&ex;UniversitasHaluOleo">
+        <rdf:type rdf:resource="&ex;PerguruanTinggi"/>
+        <rdfs:label xml:lang="id">Universitas Halu Oleo</rdfs:label>
+        <ex:programStudi>S1 Ilmu Komputer</ex:programStudi>
+        <ex:fakultas>Fakultas MIPA</ex:fakultas>
+        <ex:tahunMasuk rdf:datatype="&xsd;gYear">2021</ex:tahunMasuk>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="&ex;SMA_Kamu">
+        <rdf:type rdf:resource="&ex;SekolahMenengahAtas"/>
+        <rdfs:label xml:lang="id">SMA Negeri [isi nama SMA-mu]</rdfs:label>
+        <ex:tahunMasuk  rdf:datatype="&xsd;gYear">2018</ex:tahunMasuk>
+        <ex:tahunLulus  rdf:datatype="&xsd;gYear">2021</ex:tahunLulus>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="&ex;SMP_Kamu">
+        <rdf:type rdf:resource="&ex;SekolahMenengahPertama"/>
+        <rdfs:label xml:lang="id">SMP Negeri [isi nama SMP-mu]</rdfs:label>
+        <ex:tahunMasuk  rdf:datatype="&xsd;gYear">2015</ex:tahunMasuk>
+        <ex:tahunLulus  rdf:datatype="&xsd;gYear">2018</ex:tahunLulus>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="&ex;SD_Kamu">
+        <rdf:type rdf:resource="&ex;SekolahDasar"/>
+        <rdfs:label xml:lang="id">SDN [isi nama SD-mu]</rdfs:label>
+        <ex:tahunMasuk  rdf:datatype="&xsd;gYear">2009</ex:tahunMasuk>
+        <ex:tahunLulus  rdf:datatype="&xsd;gYear">2015</ex:tahunLulus>
+    </owl:NamedIndividual>
+
+    <!-- Individu: Organisasi -->
+    <owl:NamedIndividual rdf:about="&ex;HMPSILMUKOMPUTER">
+        <rdf:type rdf:resource="&ex;OrganisasiMahasiswa"/>
+        <rdfs:label xml:lang="id">Himpunan Mahasiswa Ilmu Komputer UHO (HMPSILMUKOMPUTER)</rdfs:label>
+        <ex:peran>Anggota Aktif</ex:peran>
+        <ex:tahunMulai rdf:datatype="&xsd;gYear">2021</ex:tahunMulai>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="&ex;BTN_Kendari">
+        <rdf:type rdf:resource="&ex;TempatMagang"/>
+        <rdfs:label xml:lang="id">PT Bank Tabungan Negara KC Kendari</rdfs:label>
+        <ex:peran>Praktikan IT (KKP)</ex:peran>
+        <ex:tahunMulai  rdf:datatype="&xsd;gYear">2024</ex:tahunMulai>
+        <ex:tahunSelesai rdf:datatype="&xsd;gYear">2024</ex:tahunSelesai>
+    </owl:NamedIndividual>
+
+    <!-- Individu: Skill -->
+    <owl:NamedIndividual rdf:about="&ex;SkillPython">
+        <rdf:type rdf:resource="&ex;SkillPemrograman"/>
+        <rdfs:label xml:lang="id">Python</rdfs:label>
+        <ex:tingkatKeahlian>Mahir</ex:tingkatKeahlian>
+        <ex:kategoriSkill>Bahasa Pemrograman</ex:kategoriSkill>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="&ex;SkillML">
+        <rdf:type rdf:resource="&ex;SkillKecerdasanBuatan"/>
+        <rdfs:label xml:lang="id">Machine Learning</rdfs:label>
+        <ex:tingkatKeahlian>Menengah</ex:tingkatKeahlian>
+        <ex:kategoriSkill>Kecerdasan Buatan</ex:kategoriSkill>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="&ex;SkillSPARQL">
+        <rdf:type rdf:resource="&ex;SkillSemanticWeb"/>
+        <rdfs:label xml:lang="id">SPARQL</rdfs:label>
+        <ex:tingkatKeahlian>Menengah</ex:tingkatKeahlian>
+        <ex:kategoriSkill>Query Language</ex:kategoriSkill>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="&ex;SkillPHP">
+        <rdf:type rdf:resource="&ex;SkillPemrograman"/>
+        <rdfs:label xml:lang="id">PHP dan Laravel</rdfs:label>
+        <ex:tingkatKeahlian>Mahir</ex:tingkatKeahlian>
+        <ex:kategoriSkill>Bahasa Pemrograman</ex:kategoriSkill>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="&ex;SkillMySQL">
+        <rdf:type rdf:resource="&ex;SkillDatabase"/>
+        <rdfs:label xml:lang="id">MySQL</rdfs:label>
+        <ex:tingkatKeahlian>Mahir</ex:tingkatKeahlian>
+        <ex:kategoriSkill>Database</ex:kategoriSkill>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="&ex;SkillSemanticWebInst">
+        <rdf:type rdf:resource="&ex;SkillSemanticWeb"/>
+        <rdfs:label xml:lang="id">Semantic Web (RDF, OWL)</rdfs:label>
+        <ex:tingkatKeahlian>Menengah</ex:tingkatKeahlian>
+        <ex:kategoriSkill>Web Technology</ex:kategoriSkill>
+    </owl:NamedIndividual>
+
+    <!-- Individu: Proyek -->
+    <owl:NamedIndividual rdf:about="&ex;ProyekSentimen">
+        <rdf:type rdf:resource="&ex;ProyekAkademik"/>
+        <rdfs:label xml:lang="id">Analisis Sentimen Feedback Praktikum FMIPA UHO</rdfs:label>
+        <ex:teknologi>Python, TF-IDF, SVM</ex:teknologi>
+        <ex:kategoriProyek>Machine Learning / NLP</ex:kategoriProyek>
+        <ex:digunakanDalam rdf:resource="&ex;SkillPython"/>
+        <ex:digunakanDalam rdf:resource="&ex;SkillML"/>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="&ex;ProyekOlehOleh">
+        <rdf:type rdf:resource="&ex;ProyekAkademik"/>
+        <rdfs:label xml:lang="id">Sistem Informasi Oleh-Oleh Khas Kendari (Semantic Web)</rdfs:label>
+        <ex:teknologi>PHP, EasyRDF, SPARQL, OWL</ex:teknologi>
+        <ex:kategoriProyek>Semantic Web</ex:kategoriProyek>
+        <ex:digunakanDalam rdf:resource="&ex;SkillPHP"/>
+        <ex:digunakanDalam rdf:resource="&ex;SkillSPARQL"/>
+        <ex:digunakanDalam rdf:resource="&ex;SkillSemanticWebInst"/>
+    </owl:NamedIndividual>
+
+</rdf:RDF>
